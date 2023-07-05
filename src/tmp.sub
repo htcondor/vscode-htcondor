@@ -1,0 +1,8 @@
+# sleep.sub -- simple sleep job
+
+executable              = /bin/sleep
+arguments		            = 5
+log                     = test.log
+output                  = outfile.txt
+error                   = errors.txt
+queue 1
