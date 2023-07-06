@@ -388,3 +388,197 @@
 
 	Job terminated of its own accord at 2023-06-21T17:33:54Z with exit-code 0.
 ...
+000 (641.000.000) 2023-07-06 15:45:46 Job submitted from host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=schedd_29514_ba44>
+...
+001 (641.000.000) 2023-07-06 15:45:47 Job executing on host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=startd_29514_ba44>
+	SlotName: slot1@maxs-macbook-pro.local
+	CondorScratchDir = "/Users/maxhartke/htcondor/__build/release_dir/local.maxs-macbook-pro/execute/dir_58553"
+	Cpus = 1
+	Disk = 35863814
+	Memory = 2048
+...
+006 (641.000.000) 2023-07-06 15:45:55 Image size of job updated: 150
+	2  -  MemoryUsage of job (MB)
+	1776  -  ResidentSetSize of job (KB)
+...
+006 (641.000.000) 2023-07-06 15:46:37 Image size of job updated: 912
+	2  -  MemoryUsage of job (MB)
+	1776  -  ResidentSetSize of job (KB)
+...
+005 (641.000.000) 2023-07-06 15:46:37 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :      150      150  35863814 
+	   Memory (MB)          :        2        1      2048 
+
+	Job terminated of its own accord at 2023-07-06T20:46:37Z with exit-code 0.
+...
+000 (642.000.000) 2023-07-06 15:56:00 Job submitted from host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=schedd_29514_ba44>
+...
+001 (642.000.000) 2023-07-06 15:56:06 Job executing on host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=startd_29514_ba44>
+	SlotName: slot1@maxs-macbook-pro.local
+	CondorScratchDir = "/Users/maxhartke/htcondor/__build/release_dir/local.maxs-macbook-pro/execute/dir_62704"
+	Cpus = 1
+	Disk = 35863814
+	Memory = 2048
+...
+006 (642.000.000) 2023-07-06 15:56:13 Image size of job updated: 150
+	2  -  MemoryUsage of job (MB)
+	1712  -  ResidentSetSize of job (KB)
+...
+004 (642.000.000) 2023-07-06 15:56:13 Job was evicted.
+	(0) CPU times
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :      150      150  35863814 
+	   Memory (MB)          :        2        1      2048 
+...
+012 (642.000.000) 2023-07-06 15:56:13 Job was held.
+	via condor_hold (by user maxhartke)
+	Code 1 Subcode 0
+...
+013 (642.000.000) 2023-07-06 15:56:24 Job was released.
+	via condor_release (by user maxhartke)
+...
+001 (642.000.000) 2023-07-06 15:56:26 Job executing on host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=startd_29514_ba44>
+	SlotName: slot1@maxs-macbook-pro.local
+	CondorScratchDir = "/Users/maxhartke/htcondor/__build/release_dir/local.maxs-macbook-pro/execute/dir_62870"
+	Cpus = 1
+	Disk = 35863814
+	Memory = 2048
+...
+006 (642.000.000) 2023-07-06 15:56:34 Image size of job updated: 150
+	2  -  MemoryUsage of job (MB)
+	1856  -  ResidentSetSize of job (KB)
+...
+006 (642.000.000) 2023-07-06 15:57:16 Image size of job updated: 912
+	2  -  MemoryUsage of job (MB)
+	1856  -  ResidentSetSize of job (KB)
+...
+005 (642.000.000) 2023-07-06 15:57:16 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :      150      150  35863814 
+	   Memory (MB)          :        2        2      2048 
+
+	Job terminated of its own accord at 2023-07-06T20:57:16Z with exit-code 0.
+...
+000 (643.000.000) 2023-07-06 15:58:43 Job submitted from host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=schedd_29514_ba44>
+...
+000 (643.001.000) 2023-07-06 15:58:43 Job submitted from host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=schedd_29514_ba44>
+...
+000 (643.002.000) 2023-07-06 15:58:43 Job submitted from host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=schedd_29514_ba44>
+...
+001 (643.000.000) 2023-07-06 15:58:46 Job executing on host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=startd_29514_ba44>
+	SlotName: slot1@maxs-macbook-pro.local
+	CondorScratchDir = "/Users/maxhartke/htcondor/__build/release_dir/local.maxs-macbook-pro/execute/dir_63634"
+	Cpus = 1
+	Disk = 35863814
+	Memory = 2048
+...
+001 (643.001.000) 2023-07-06 15:58:46 Job executing on host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=startd_29514_ba44>
+	SlotName: slot2@maxs-macbook-pro.local
+	CondorScratchDir = "/Users/maxhartke/htcondor/__build/release_dir/local.maxs-macbook-pro/execute/dir_63635"
+	Cpus = 1
+	Disk = 35863814
+	Memory = 2048
+...
+001 (643.002.000) 2023-07-06 15:58:46 Job executing on host: <127.0.0.1:59624?addrs=127.0.0.1-59624&alias=maxs-macbook-pro.local&noUDP&sock=startd_29514_ba44>
+	SlotName: slot3@maxs-macbook-pro.local
+	CondorScratchDir = "/Users/maxhartke/htcondor/__build/release_dir/local.maxs-macbook-pro/execute/dir_63636"
+	Cpus = 1
+	Disk = 35863814
+	Memory = 2048
+...
+006 (643.000.000) 2023-07-06 15:58:55 Image size of job updated: 1056
+	2  -  MemoryUsage of job (MB)
+	1200  -  ResidentSetSize of job (KB)
+...
+006 (643.001.000) 2023-07-06 15:58:55 Image size of job updated: 1056
+	2  -  MemoryUsage of job (MB)
+	1184  -  ResidentSetSize of job (KB)
+...
+006 (643.002.000) 2023-07-06 15:58:55 Image size of job updated: 150
+	2  -  MemoryUsage of job (MB)
+	1808  -  ResidentSetSize of job (KB)
+...
+006 (643.002.000) 2023-07-06 15:59:17 Image size of job updated: 928
+	2  -  MemoryUsage of job (MB)
+	1808  -  ResidentSetSize of job (KB)
+...
+004 (643.002.000) 2023-07-06 15:59:17 Job was evicted.
+	(0) CPU times
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :      150      150  35863814 
+	   Memory (MB)          :        2        1      2048 
+...
+012 (643.002.000) 2023-07-06 15:59:17 Job was held.
+	via condor_hold (by user maxhartke)
+	Code 1 Subcode 0
+...
+005 (643.000.000) 2023-07-06 15:59:36 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :      150      150  35863814 
+	   Memory (MB)          :        2        1      2048 
+
+	Job terminated of its own accord at 2023-07-06T20:59:36Z with exit-code 0.
+...
+005 (643.001.000) 2023-07-06 15:59:36 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :      150      150  35863814 
+	   Memory (MB)          :        2        1      2048 
+
+	Job terminated of its own accord at 2023-07-06T20:59:36Z with exit-code 0.
+...
+009 (643.002.000) 2023-07-06 16:02:04 Job was aborted.
+	via condor_rm (by user maxhartke)
+
+	Job terminated by <127.0.0.1:59828> at 2023-07-06T20:59:17Z (using method 1: DEACTIVATE_CLAIM).
+...

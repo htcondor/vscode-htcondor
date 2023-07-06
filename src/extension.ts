@@ -11,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "htc" is now active!');
 	// register tree view
 	vscode.window.registerTreeDataProvider("htcondor.jobs", new JobProvider());
+	vscode.window.registerTreeDataProvider("htcondor.jobs.explorer", new JobProvider());
 	//watchLogFile("test.log");
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand

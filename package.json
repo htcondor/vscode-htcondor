@@ -37,6 +37,16 @@
           "id": "htcondor.clusters",
           "name": "Clusters"
         }
+      ],
+      "explorer": [
+        {
+          "id": "htcondor.jobs.explorer",
+          "name": "Jobs"
+        },
+        {
+          "id": "htcondor.clusters.explorer",
+          "name": "Clusters"
+        }
       ]
     }
   },
