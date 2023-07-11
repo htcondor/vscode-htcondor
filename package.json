@@ -1,7 +1,7 @@
 {
   "name": "htc",
   "displayName": "htc",
-  "description": "",
+  "description": "Unoffical extension for Htcondor",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.79.0"
@@ -16,6 +16,10 @@
       {
         "command": "htc.submit",
         "title": "Htcondor Submit"
+      },
+      {
+        "command": "htc.ap",
+        "title": "Htcondor Access Point"
       }
     ],
     "viewsContainers": {
@@ -48,6 +52,35 @@
           "name": "Clusters"
         }
       ]
+    },
+    "configuration": {
+      "title": "Htcondor Extension",
+      "properties": {
+        "htc.accessPoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "List of access points to htcondor pools."
+        },
+        "htc.accessPoint": {
+          "type": "string",
+          "default": "",
+          "description": "Access point to htcondor pool."
+        },
+        "htc.username": {
+          "type": "string",
+          "default": "",
+          "description": "Username for access point."
+        },
+        "htc.logFile": {
+          "type": "string",
+          "default": "",
+          "description": "Path to log file."
+        }
+      },
+      "configurationScope": "resource"
     }
   },
   "scripts": {

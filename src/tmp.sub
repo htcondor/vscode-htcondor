@@ -6,4 +6,4 @@ log                     = test.log
 output                  = outfile.txt
 error                   = errors.txt
 request_disk            = 1
-queue 2
+queue 3

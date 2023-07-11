@@ -1,0 +1,6 @@
+{
+	"htc.accessPoint": "submit-2.chtc.wisc.edu",
+	"htc.accessPoints": ["submit-2.chtc.wisc.edu", "submit-1.chtc.wisc.edu"],
+	"htc.username": "mjhartke",
+	"htc.logFile": "/Users/maxhartke/htc/src/new.log"
+}

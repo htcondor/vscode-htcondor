@@ -5,13 +5,13 @@ import * as vscode from "vscode";
 type JobOrEvent = Job | Event;
 
 export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
+	readonly logFile: string = vscode.workspace.getConfiguration("htc").get("logFile") || "";
 	constructor() {
-		this.startWatching();
 	}
 
 	// maybe just watch log file if able to mount it
 	startWatching(): void {
-		fs.watch("/Users/maxhartke/htc/src/test.log", (event, filename) => {
+		fs.watch(this.logFile, (event, filename) => {
 			if (event === "change") {
 				this.refresh();
 			}
@@ -40,7 +40,7 @@ export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 		let jobs: Job[] = [];
 		let data: string;
 		try {
-			data = fs.readFileSync("/Users/maxhartke/htc/src/test.log", "utf8");
+			data = fs.readFileSync(this.logFile, "utf8");
 		} catch (err) {
 			console.error(err);
 			return [];
