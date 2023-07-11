@@ -9,6 +9,7 @@ export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 		this.startWatching();
 	}
 
+	// maybe just watch log file if able to mount it
 	startWatching(): void {
 		fs.watch("/Users/maxhartke/htc/src/test.log", (event, filename) => {
 			if (event === "change") {
@@ -17,59 +18,12 @@ export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 		});
 	}
 
-	// unsure if this should go here
-	static watchJob(job: any): void {
-		// You can dump the condor submit property for your new job
-		// console.dir(job.props);
-
-		// Job.id contains cluster/proc ids
-		console.log("Job ID: " + job.id);
-
-		// You can *watch* job log
-		job.onevent(function (event: any) {
-			switch (event.MyType) {
-				// Normal status type events (just display content)
-				case "SubmitEvent":
-					console.log(event.MyType);
-				case "ExecuteEvent":
-				case "JobImageSizeEvent":
-					console.log(event.MyType);
-					break;
-
-				// Critical events
-				case "ShadowExceptionEvent":
-					console.log(event.MyType);
-					console.dir(event);
-
-					// I now stop the watcher (ends this submission)
-					job.unwatch();
-					break;
-
-				// Job ended normally
-				case "JobTerminatedEvent":
-					console.log(event.MyType);
-					console.dir(event.EventTime);
-
-					// Do something based on the ReturnValue (resubmit, submit different job, etc..)
-					console.log("return value:" + event.ReturnValue);
-
-					// If you submitted queue != 1, then you can look for Event.Proc to get the Process ID (0, 1, etc..)
-
-					break;
-
-				default:
-					console.log(event.MyType);
-					console.log("unknown event type.. ignoring for now");
-			}
-		});
-	}
 	private _onDidChangeTreeData: vscode.EventEmitter<JobOrEvent | undefined | void> = new vscode.EventEmitter<JobOrEvent | undefined | void>();
 	readonly onDidChangeTreeData: vscode.Event<JobOrEvent | undefined | void> = this._onDidChangeTreeData.event;
 
 	private _jobs: { [id: string]: Job } = {};
 
 	refresh(): void {
-		console.log("refreshing");
 		this._onDidChangeTreeData.fire();
 	}
 
