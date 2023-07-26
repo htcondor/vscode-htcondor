@@ -1,20 +1,26 @@
-# htc README
+# Htcondor for Visual Studio Code
 
-This is the README for your extension "htc". After writing up a brief description, we recommend including the following sections.
+The Htcondor extension for Visual Studio Code adds rich language support for the Htcondor submit. files. Future releases will include more features for interacting with access points and jobs.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Submit file commands documentation on hover
 
-For example if there is an image subfolder under your extension project workspace:
+  ![On Hover](images/hover.gif)
 
-\!\[feature X\]\(images/feature-x.png\)
+- Submit file commands documentation on completion
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+  ![On Completion](images/completion.gif)
+
+- Submit file snippets
+
+  ![Snippets](images/snippets.gif)
+
+- Syntax highlighting
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Submit files must end in `.sub` for language support to be enabled.
 
 ## Extension Settings
 
@@ -29,43 +35,17 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+With each release, the following will be updated:
 
 ### 1.0.0
 
-Initial release of ...
+Initial release of Htcondor for Visual Studio Code
 
-### 1.0.1
 
-Fixed issue #.
+## Contributing
 
-### 1.1.0
+Open an issue or submit a pull request.
 
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## License

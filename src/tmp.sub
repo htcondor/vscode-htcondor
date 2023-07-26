@@ -7,6 +7,5 @@ log                     = tmp.log
 output                  = outfile.txt
 error                   = errors.txt
 request_disk            = 1
-run_as_owner            = true
-queue 2
-priority
+run_as_owner            = false
+queue 1

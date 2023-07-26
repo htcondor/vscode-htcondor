@@ -1,0 +1,39 @@
+{
+	"HTC simple sub": {
+		"prefix": "sub",
+		"scope": "sub",
+		"body": [
+			"# starter submit file for CHTC jobs",
+			"universe = vanilla",
+			"log = job_$(Cluster).log",
+			"error = job_$(Cluster)_$(Process).err",
+			"output = job_$(Cluster)_$(Process).out",
+			"executable = ",
+			"arguments = ",
+			"should_transfer_files = YES",
+			"when_to_transfer_output = ON_EXIT",
+			"transfer_input_files = ",
+			"request_cpus = 1",
+			"request_memory = 1GB",
+			"request_disk = 1GB",
+			"queue 1"
+		],
+		"description": "Snippet for a simple HTC submit file"
+	},
+	"HTC sleep sub": {
+		"prefix": "sleep sub",
+		"scope": "sub",
+		"body": [
+			"# sleep.sub -- simple sleep job",
+			"",
+			"executable              = /bin/sleep",
+			"universe                = local",
+			"arguments               = 10",
+			"log                     = sleep.log",
+			"output                  = sleep.out",
+			"error                   = sleep.err",
+			"queue 1"
+		],
+		"description": "Snippet for a simple HTC sleep job"
+	}
+}
