@@ -1,0 +1,106 @@
+BASIC COMMANDS
+
+arguments
+environment
+error
+executable
+batch_name
+getenv
+input
+log
+notification
+notify_user
+output
+priority
+queue
+universe
+max_materialize
+max_idle
+
+COMMANDS FOR MATCHMAKING
+
+rank
+request_cpus
+request_disk
+request_gpus
+require_gpus
+request_memory
+cuda_version
+requirements
+
+FILE TRANSFER COMMANDS
+
+dont_encrypt_input_files
+dont_encrypt_output_files
+encrypt_execute_directory
+encrypt_input_files
+encrypt_output_files
+erase_output_and_error_on_restart
+max_transfer_input_mb
+max_transfer_output_mb
+output_destination
+should_transfer_files
+skip_filechecks
+stream_error
+stream_input
+stream_output
+transfer_executable
+transfer_input_files
+transfer_output_files
+transfer_checkpoint_files
+preserve_relative_paths
+transfer_output_remaps
+transfer_plugins
+when_to_transfer_output
+aws_access_key_id_file, s3_access_key_id_file
+aws_secret_access_key_file, s3_secret_access_key_file
+aws_region
+gs_access_key_id_file
+gs_secret_access_key_file
+
+POLICY COMMANDS
+
+allowed_execute_duration
+allowed_job_duration
+max_retries
+retry_until
+success_exit_code
+checkpoint_exit_code
+hold
+keep_claim_idle
+leave_in_queue
+next_job_start_delay
+on_exit_hold
+on_exit_hold_reason
+on_exit_hold_subcode
+on_exit_remove
+periodic_hold
+periodic_hold_reason
+periodic_hold_subcode
+periodic_release
+periodic_remove
+
+COMMANDS FOR THE GRID
+
+COMMANDS FOR PARALLEL, JAVA, and SCHEDULER UNIVERSES
+
+COMMANDS FOR THE VM UNIVERSE
+
+COMMANDS FOR THE DOCKER UNIVERSE
+
+COMMANDS FOR THE CONTAINER UNIVERSE
+
+ADVANCED COMMANDS
+
+SUBMIT VARIABLES
+
+ClustedId
+Cluster
+Proc_Id
+Process
+JobId
+node
+Step
+ItemIndex
+Row
+Item

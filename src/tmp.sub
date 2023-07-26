@@ -1,9 +1,12 @@
 # sleep.sub -- simple sleep job
 
 executable              = /bin/sleep
+universe                = local
 arguments		            = 10
-log                     = test.log
+log                     = tmp.log
 output                  = outfile.txt
 error                   = errors.txt
 request_disk            = 1
-queue 3
+run_as_owner            = true
+queue 2
+priority

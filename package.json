@@ -9,9 +9,24 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+     "onLanguage:htcondor"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "htcondor",
+        "extensions": [".sub"]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "htcondor",
+        "scopeName": "source.condor",
+        "path": "./htcondor.json"
+      }
+    ],
     "commands": [
       {
         "command": "htc.submit",

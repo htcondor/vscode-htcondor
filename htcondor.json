@@ -1,0 +1,51 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "HTCondor",
+	"patterns": [
+		{
+			"name": "comment.line.number-sign.condor",
+			"match": "#.*",
+			"captures": {
+				"0": { "name": "punctuation.definition.comment.condor" }
+			}
+		},
+		{
+			"name": "keyword.control.condor",
+			"match": "^\\s*(executable)\\b",
+			"captures": {
+				"1": { "name": "keyword.control.condor" }
+			}
+		},
+		{
+			"name": "keyword.other.condor",
+			"match": "^(\\w+)",
+			"captures": {
+				"1": { "name": "keyword.other.condor" }
+			}
+		},
+		{
+			"name": "string.unquoted.condor",
+			"match": "(=)\\s*(.*)",
+			"captures": {
+				"1": { "name": "punctuation.separator.key-value.condor" },
+				"2": { "name": "string.unquoted.condor" }
+			}
+		},
+		{
+			"name": "constant.numeric.integer.condor",
+			"match": "\\b\\d+\\b",
+			"captures": {
+				"0": { "name": "constant.numeric.integer.condor" }
+			}
+		},
+		{
+			"name": "constant.language.boolean.condor",
+			"match": "\\b(true|false)\\b",
+			"captures": {
+				"0": { "name": "constant.language.boolean.condor" }
+			}
+		}
+	],
+	"scopeName": "source.condor",
+	"fileTypes": ["sub"]
+}
