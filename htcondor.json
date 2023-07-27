@@ -1,51 +1,62 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "HTCondor",
+	"name": "htcondor",
 	"patterns": [
 		{
-			"name": "comment.line.number-sign.condor",
+			"name": "comment.line.number-sign.htcondor",
 			"match": "#.*",
 			"captures": {
-				"0": { "name": "punctuation.definition.comment.condor" }
+				"0": {
+					"name": "punctuation.definition.comment.htcondor"
+				}
 			}
 		},
 		{
-			"name": "keyword.control.condor",
-			"match": "^\\s*(executable)\\b",
+			"name": "keyword.command.htcondor",
+			"match": "^\\+?(\\w+)",
 			"captures": {
-				"1": { "name": "keyword.control.condor" }
+				"1": {
+					"name": "keyword.command.htcondor"
+				}
 			}
 		},
 		{
-			"name": "keyword.other.condor",
-			"match": "^(\\w+)",
+			"name": "constant.numeric.integer.htcondor",
+			"match": "(=?)\\s*(\\b\\d+\\b)",
 			"captures": {
-				"1": { "name": "keyword.other.condor" }
+				"1": {
+					"name": "punctuation.separator.key-value.htcondor"
+				},
+				"2": {
+					"name": "constant.numeric.integer.htcondor"
+				}
 			}
 		},
 		{
-			"name": "string.unquoted.condor",
+			"name": "constant.language.boolean.htcondor",
+			"match": "(=)\\s*(\\b(true|false)\\b)",
+			"captures": {
+				"1": {
+					"name": "punctuation.separator.key-value.htcondor"
+				},
+				"2": {
+					"name": "constant.language.boolean.htcondor"
+				}
+			}
+		},
+		{
+			"name": "string.unquoted.htcondor",
 			"match": "(=)\\s*(.*)",
 			"captures": {
-				"1": { "name": "punctuation.separator.key-value.condor" },
-				"2": { "name": "string.unquoted.condor" }
-			}
-		},
-		{
-			"name": "constant.numeric.integer.condor",
-			"match": "\\b\\d+\\b",
-			"captures": {
-				"0": { "name": "constant.numeric.integer.condor" }
-			}
-		},
-		{
-			"name": "constant.language.boolean.condor",
-			"match": "\\b(true|false)\\b",
-			"captures": {
-				"0": { "name": "constant.language.boolean.condor" }
+				"1": {
+					"name": "punctuation.separator.key-value.htcondor"
+				},
+				"2": {
+					"name": "string.unquoted.htcondor"
+				}
 			}
 		}
 	],
-	"scopeName": "source.condor",
+	"scopeName": "source.htcondor",
 	"fileTypes": ["sub"]
 }

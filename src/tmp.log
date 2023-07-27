@@ -1,23 +1,6 @@
-000 (83613.000.000) 2023-07-19 18:09:15 Job submitted from host: <192.170.231.141:9618?addrs=192.170.231.141-9618+[2605-9a00-10-200b-192-170-231-141]-9618&alias=ap20.uc.osg-htc.org&noUDP&sock=schedd_7856_241b>
+001 (11180181.000.000) 2023-07-27 11:09:45 Job executing on host: <128.104.101.92:9618?addrs=128.104.101.92-9618+[2607-f388-107c-501-a236-9fff-fe3c-caa8]-9618&alias=submit2.chtc.wisc.edu&noUDP&sock=starter_1814428_6ab0_2004202>
 ...
-000 (83613.001.000) 2023-07-19 18:09:15 Job submitted from host: <192.170.231.141:9618?addrs=192.170.231.141-9618+[2605-9a00-10-200b-192-170-231-141]-9618&alias=ap20.uc.osg-htc.org&noUDP&sock=schedd_7856_241b>
-...
-001 (83613.000.000) 2023-07-19 18:09:17 Job executing on host: <192.170.231.141:9618?addrs=192.170.231.141-9618+[2605-9a00-10-200b-192-170-231-141]-9618&alias=ap20.uc.osg-htc.org&noUDP&sock=starter_7975_dbdd_99470>
-...
-001 (83613.001.000) 2023-07-19 18:09:17 Job executing on host: <192.170.231.141:9618?addrs=192.170.231.141-9618+[2605-9a00-10-200b-192-170-231-141]-9618&alias=ap20.uc.osg-htc.org&noUDP&sock=starter_7975_dbdd_99471>
-...
-005 (83613.000.000) 2023-07-19 18:09:29 Job terminated.
-	(1) Normal termination (return value 0)
-		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
-		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
-		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
-		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
-	0  -  Run Bytes Sent By Job
-	0  -  Run Bytes Received By Job
-	0  -  Total Bytes Sent By Job
-	0  -  Total Bytes Received By Job
-...
-005 (83613.001.000) 2023-07-19 18:09:29 Job terminated.
+005 (11180181.000.000) 2023-07-27 11:09:57 Job terminated.
 	(1) Normal termination (return value 0)
 		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
 		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
