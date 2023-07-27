@@ -2,15 +2,15 @@
 	"name": "htcondor",
 	"displayName": "Htcondor",
 	"description": "Unoffical extension for Htcondor",
-  "author": "Max Hartke",
-	"version": "0.0.1",
-  "icon": "htcondor.png",
-  "publisher": "htcondor",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/maxhartke/vscode-htcondor"
-  },
+	"author": "Max Hartke",
+	"version": "0.1.0",
+	"icon": "htcondor.png",
+	"publisher": "htcondor",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/maxhartke/vscode-htcondor"
+	},
 	"engines": {
 		"vscode": "^1.79.0"
 	},
