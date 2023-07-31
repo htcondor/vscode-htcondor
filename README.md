@@ -1,6 +1,6 @@
 # Htcondor for Visual Studio Code
 
-The Htcondor extension for Visual Studio Code adds rich language support for the Htcondor submit. files. Future releases will include more features for interacting with access points and jobs.
+The Htcondor extension for Visual Studio Code adds rich language support for Htcondor submit files. Future releases will include more features for interacting with access points and jobs.
 
 ## Features
 

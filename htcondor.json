@@ -34,7 +34,7 @@
 		},
 		{
 			"name": "constant.language.boolean.htcondor",
-			"match": "(=?)\\s*(\\b(True|False)\\b)",
+			"match": "(=?)\\s*(\\b([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])\\b)",
 			"captures": {
 				"1": {
 					"name": "punctuation.separator.key-value.htcondor"
