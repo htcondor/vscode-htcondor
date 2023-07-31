@@ -34,7 +34,7 @@
 		},
 		{
 			"name": "constant.language.boolean.htcondor",
-			"match": "(=)\\s*(\\b(true|false)\\b)",
+			"match": "(=?)\\s*(\\b(True|False)\\b)",
 			"captures": {
 				"1": {
 					"name": "punctuation.separator.key-value.htcondor"
@@ -46,17 +46,24 @@
 		},
 		{
 			"name": "string.unquoted.htcondor",
-			"match": "(=)\\s*(.*)",
+			"begin": "(=)\\s*",
+			"end": "(?=$|\\n)",
+			"contentName": "string.unquoted.htcondor",
+			"patterns": [
+				{
+					"name": "variable.other.htcondor",
+					"match": "\\$\\((\\w+)\\)"
+				}
+			],
 			"captures": {
 				"1": {
 					"name": "punctuation.separator.key-value.htcondor"
-				},
-				"2": {
-					"name": "string.unquoted.htcondor"
 				}
 			}
 		}
 	],
 	"scopeName": "source.htcondor",
-	"fileTypes": ["sub"]
+	"fileTypes": [
+		"sub"
+	]
 }
