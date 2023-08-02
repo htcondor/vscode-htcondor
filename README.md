@@ -5,18 +5,11 @@ The Htcondor extension for Visual Studio Code adds rich language support for Htc
 ## Features
 
 - Submit file commands documentation on hover
-
-  ![On Hover](images/hover.gif)
-
-- Submit file commands documentation on completion
-
-  ![On Completion](images/completion.gif)
-
+- Submit file commands on completion
 - Submit file snippets
-
-  ![Snippets](images/snippets.gif)
-
 - Syntax highlighting
+
+  ![Demo](images/demo.gif)
 
 ## Requirements
 
