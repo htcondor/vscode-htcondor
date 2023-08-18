@@ -1,15 +1,16 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "htcondor",
-	"patterns": [		{
-    "name": "variable.custom-attribute.htcondor",
-    "match": "\\+(\\w+)",
-    "captures": {
-        "1": {
-            "name": "variable.attribute-name.htcondor"
-        }
-    }
-},
+	"patterns": [
+		{
+			"name": "variable.custom-attribute.htcondor",
+			"match": "\\+(\\w+)",
+			"captures": {
+				"1": {
+					"name": "variable.attribute-name.htcondor"
+				}
+			}
+		},
 		{
 			"name": "comment.line.number-sign.htcondor",
 			"match": "#.*",
@@ -69,11 +70,7 @@
 				}
 			}
 		}
-
-
 	],
 	"scopeName": "source.htcondor",
-	"fileTypes": [
-		"sub"
-	]
+	"fileTypes": ["sub"]
 }

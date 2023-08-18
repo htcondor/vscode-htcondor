@@ -5,7 +5,7 @@ import os
 if not os.path.exists("html_files"):
     os.makedirs("html_files")
 
-with open("submitCommands.html", "r") as f:
+with open("submitvars.html", "r") as f:
     contents = f.read()
 
 soup = BeautifulSoup(contents, 'html.parser')
@@ -38,12 +38,12 @@ for dt in dt_tags:
 
 
 # create a directory to store all md files
-if not os.path.exists("md_files"):
-    os.makedirs("md_files")
+if not os.path.exists("submitvar_files"):
+    os.makedirs("submitvar_files")
 
 # convert all html files to md files using pandoc
 for filename in os.listdir("html_files"):
-    os.system(f"pandoc html_files/{filename} -o md_files/{filename.split('.')[0]}.md")
+    os.system(f"pandoc html_files/{filename} -o submitvar_files/{filename.split('.')[0]}.md")
 
 
 
