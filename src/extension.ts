@@ -12,24 +12,34 @@ const key = '7958b5c6-25cc-4797-ac0b-c9a42a037190';
 // telemetry reporter
 let reporter: TelemetryReporter;
 class DocHoverProvider implements vscode.HoverProvider {
-	provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): Thenable<vscode.Hover> {
-		return new Promise((resolve, reject) => {
+	provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): vscode.ProviderResult<vscode.Hover> {
+		return new Promise<vscode.Hover | undefined>((resolve) => {
 			let wordRange = document.getWordRangeAtPosition(position);
 			let keyword = document.getText(wordRange);
 
-			if (fs.existsSync(path.join(__dirname, "../md_files", keyword + ".md"))) {
-				// Read the arguments.html file
-				let htmlContent = fs.readFileSync(path.join(__dirname, "../md_files", keyword + ".md"), "utf8");
-				let markdown = new vscode.MarkdownString(htmlContent, true);
-				markdown.supportHtml = true;
-				reporter.sendTelemetryEvent('hover', {'keyword': keyword});
-				resolve(new vscode.Hover(markdown));
+			const markdownFilePath = path.join(__dirname, "../md_files", keyword + ".md");
+			if (fs.existsSync(markdownFilePath)) {
+				try {
+					let htmlContent = fs.readFileSync(markdownFilePath, "utf8");
+					let markdown = new vscode.MarkdownString(htmlContent, true);
+					markdown.supportHtml = true;
+
+					reporter.sendTelemetryEvent('hover', { 'keyword': keyword });
+
+					resolve(new vscode.Hover(markdown));
+				} catch (error) {
+					console.error(`Error while processing markdown file for keyword: ${keyword}`, error);
+					resolve(undefined);  // Resolve as undefined on error
+				}
 			} else {
-				reject();
+				// console.log(`No markdown file found for keyword: ${keyword}`);
+				resolve(undefined);  // Resolve as undefined if no markdown file is found
 			}
 		});
 	}
 }
+
+
 
 class DocCompletionItemProvider implements vscode.CompletionItemProvider {
 	provideCompletionItems(
@@ -43,11 +53,18 @@ class DocCompletionItemProvider implements vscode.CompletionItemProvider {
 			let keyword = document.getText(wordRange);
 			// get list of commands via the markdown files in the md_files directory
 			let commands: vscode.CompletionItem[] = [];
-			fs.readdirSync(path.join(__dirname, "../md_files")).forEach((file) => {
-				let command = new vscode.CompletionItem(file.replace(".md", ""), vscode.CompletionItemKind.Keyword);
-				commands.push(command);
-			});
-			return resolve(commands);
+			// Check if line matches the desired format
+			const line = document.lineAt(position).text;
+			const lineUntilCursor = line.substring(0, position.character);
+			if (/^\s*\w+\s*$/.test(lineUntilCursor)) {
+				fs.readdirSync(path.join(__dirname, "../md_files")).forEach((file) => {
+					let command = new vscode.CompletionItem(file.replace(".md", ""), vscode.CompletionItemKind.Keyword);
+					commands.push(command);
+					return resolve(commands);
+				});
+			}
+			// Don't provide any completions otherwise
+			return [];
 		});
 	}
 }
@@ -65,4 +82,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
