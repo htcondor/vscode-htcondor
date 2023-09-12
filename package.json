@@ -3,7 +3,7 @@
 	"displayName": "Htcondor",
 	"description": "Official extension for Htcondor",
 	"author": "Max Hartke",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"icon": "htcondor.png",
 	"publisher": "htcondor",
 	"license": "Apache-2.0",
@@ -27,7 +27,6 @@
 				{
 					"id": "htcondor",
 					"name": "Htcondor Jobs"
-					
 				}
 			]
 		},
@@ -58,17 +57,17 @@
 				"path": "./htcondor.json"
 			}
 		],
-		"commands":[
+		"commands": [
 			{
 				"command": "htcondor.selectLogFile",
 				"title": "Select Log File",
 				"icon": {
-            "light": "src/dark/file.svg",
-            "dark": "src/dark/file.svg"
-        }
+					"light": "src/dark/file.svg",
+					"dark": "src/dark/file.svg"
+				}
 			}
 		],
-				"menus": {
+		"menus": {
 			"view/title": [
 				{
 					"command": "htcondor.selectLogFile",
@@ -78,15 +77,15 @@
 			]
 		},
 		"configuration": {
-        "title": "HTCondor",
-        "properties": {
-            "htc.logFile": {
-                "type": "string",
-                "default": "",
-                "description": "Path to the log file."
-            }
-        }
-    }
+			"title": "HTCondor",
+			"properties": {
+				"htc.logFile": {
+					"type": "string",
+					"default": "",
+					"description": "Path to the log file."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
