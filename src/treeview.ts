@@ -5,18 +5,38 @@ import * as vscode from "vscode";
 type JobOrEvent = Job | Event;
 
 export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
-	readonly logFile: string = vscode.workspace.getConfiguration("htc").get("logFile") || "";
-	constructor() {
-	}
+	private logFilePath: string = '';
 
-	// maybe just watch log file if able to mount it
-	startWatching(): void {
-		fs.watch(this.logFile, (event, filename) => {
-			if (event === "change") {
+	constructor() {
+		this.logFilePath = this.getLogFilePath();
+
+		vscode.workspace.onDidChangeConfiguration(e => {
+			if (e.affectsConfiguration('htc.logFile')) {
+				this.logFilePath = this.getLogFilePath();
 				this.refresh();
 			}
 		});
 	}
+
+
+	private getLogFilePath(): string {
+		const config = vscode.workspace.getConfiguration('htc');
+		const logFileName = config.get<string>('logFile');
+		if (!logFileName) {
+			return ''; // Return an empty string if no file has been selected
+		}
+		return logFileName;
+	}
+
+
+	// // maybe just watch log file if able to mount it
+	// startWatching(): void {
+	// 	fs.watch(this.logFile, (event, filename) => {
+	// 		if (event === "change") {
+	// 			this.refresh();
+	// 		}
+	// 	});
+	// }
 
 	private _onDidChangeTreeData: vscode.EventEmitter<JobOrEvent | undefined | void> = new vscode.EventEmitter<JobOrEvent | undefined | void>();
 	readonly onDidChangeTreeData: vscode.Event<JobOrEvent | undefined | void> = this._onDidChangeTreeData.event;
@@ -31,16 +51,16 @@ export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 		return element;
 	}
 
-	private getLogFileName(jobId: string): string {
-		return "test.log";
-	}
-
 	public getJobs(): Job[] {
 		this._jobs = {};
 		let jobs: Job[] = [];
 		let data: string;
+		if (!this.logFilePath) {
+			return jobs;
+		}
+
 		try {
-			data = fs.readFileSync(this.logFile, "utf8");
+			data = fs.readFileSync(this.logFilePath, "utf8");
 		} catch (err) {
 			console.error(err);
 			return [];

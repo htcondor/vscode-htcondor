@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
+import { JobProvider } from "./treeview";
 
 class DocHoverProvider implements vscode.HoverProvider {
 	provideHover(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): Thenable<vscode.Hover> {
@@ -45,6 +46,8 @@ class DocCompletionItemProvider implements vscode.CompletionItemProvider {
 	}
 }
 
+
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -53,6 +56,28 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "htc" is now active!');
 	context.subscriptions.push(vscode.languages.registerHoverProvider("htcondor", new DocHoverProvider()));
 	context.subscriptions.push(vscode.languages.registerCompletionItemProvider("htcondor", new DocCompletionItemProvider(), " "));
+	context.subscriptions.push(
+		vscode.commands.registerCommand('htcondor.selectLogFile', async () => {
+			// Here you'll place the code to prompt the user to select the log file
+			const uris = await vscode.window.showOpenDialog({
+				canSelectMany: false,
+				openLabel: 'Open',
+				filters: {
+					'Log files': ['log']
+				}
+			});
+
+			if (uris && uris.length) {
+				const selectedPath = uris[0].fsPath;
+				// Do something with the selected path
+				vscode.workspace.getConfiguration("htc").update("logFile", selectedPath, vscode.ConfigurationTarget.Global);
+				console.log(selectedPath);
+			}
+		})
+	);
+	// register tree view
+	let jobProvider = new JobProvider();
+	vscode.window.registerTreeDataProvider("htcondor", jobProvider);
 }
 
 // This method is called when your extension is deactivated

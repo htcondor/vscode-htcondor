@@ -7,3 +7,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [Unreleased]
 
 - Initial release
+
+## [0.5.0] - 2023-09-12
+
+### Added
+
+- Htcondor jobs explorer view

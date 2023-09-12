@@ -6,3 +6,4 @@ node_modules
 .DS_Store
 src/html_files
 *.html
+src/logs/

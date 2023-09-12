@@ -22,6 +22,21 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"views": {
+			"explorer": [
+				{
+					"id": "htcondor",
+					"name": "Htcondor Jobs"
+					
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "htcondor",
+				"contents": "No log file selected yet. Select one to see job events\n[Open Log File](command:htcondor.selectLogFile)\n"
+			}
+		],
 		"snippets": [
 			{
 				"language": "htcondor",
@@ -42,7 +57,36 @@
 				"scopeName": "source.htcondor",
 				"path": "./htcondor.json"
 			}
-		]
+		],
+		"commands":[
+			{
+				"command": "htcondor.selectLogFile",
+				"title": "Select Log File",
+				"icon": {
+            "light": "src/dark/file.svg",
+            "dark": "src/dark/file.svg"
+        }
+			}
+		],
+				"menus": {
+			"view/title": [
+				{
+					"command": "htcondor.selectLogFile",
+					"when": "view == htcondor",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+        "title": "HTCondor",
+        "properties": {
+            "htc.logFile": {
+                "type": "string",
+                "default": "",
+                "description": "Path to the log file."
+            }
+        }
+    }
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
