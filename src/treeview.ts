@@ -16,6 +16,11 @@ export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 				this.refresh();
 			}
 		});
+		let iconPath = {
+			light: path.join(__dirname, "..", "icons", "light", "job.svg"),
+			dark: path.join(__dirname, "..", "icons", "dark", "job.svg"),
+		};
+		console.log(iconPath); 5;
 	}
 
 
@@ -213,8 +218,8 @@ export class Job extends vscode.TreeItem {
 		this.events = events;
 	}
 	iconPath = {
-		light: path.join(__filename, "..", "..", "src", "light", "job.svg"),
-		dark: path.join(__filename, "..", "..", "src", "dark", "job.svg"),
+		light: path.join(__dirname, "..", "icons", "light", "job.svg"),
+		dark: path.join(__dirname, "..", "icons", "dark", "job.svg"),
 	};
 	contextValue = "Job";
 }
@@ -230,8 +235,8 @@ export class Event extends vscode.TreeItem {
 		this.description = startTime?.toLocaleString();
 	}
 	iconPath = {
-		light: path.join(__filename, "..", "..", "src", "light", this.state + ".svg"),
-		dark: path.join(__filename, "..", "..", "src", "dark", this.state + ".svg"),
+		light: path.join(__dirname, "..", "icons", "light", this.state + ".svg"),
+		dark: path.join(__dirname, "..", "icons", "dark", this.state + ".svg"),
 	};
 	contextValue = "Event";
 }

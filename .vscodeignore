@@ -3,6 +3,7 @@
 out/**
 node_modules/**
 src/**
+# exclude the icon files from being ignored
 .gitignore
 .yarnrc
 webpack.config.js
