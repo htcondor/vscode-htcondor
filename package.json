@@ -3,7 +3,7 @@
 	"displayName": "Htcondor",
 	"description": "Official extension for Htcondor",
 	"author": "Max Hartke",
-	"version": "0.3.0",
+	"version": "0.5.0",
 	"icon": "htcondor.png",
 	"publisher": "htcondor",
 	"license": "Apache-2.0",
