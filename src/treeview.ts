@@ -6,13 +6,17 @@ type JobOrEvent = Job | Event;
 
 export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 	private logFilePath: string = '';
+	private _onDidChangeTreeData: vscode.EventEmitter<JobOrEvent | undefined | void> = new vscode.EventEmitter<JobOrEvent | undefined | void>();
+	readonly onDidChangeTreeData: vscode.Event<JobOrEvent | undefined | void> = this._onDidChangeTreeData.event;
+	private watcher: fs.FSWatcher | null = null;
 
 	constructor() {
 		this.logFilePath = this.getLogFilePath();
-
+		this.startWatching();
 		vscode.workspace.onDidChangeConfiguration(e => {
 			if (e.affectsConfiguration('htc.logFile')) {
 				this.logFilePath = this.getLogFilePath();
+				this.startWatching();
 				this.refresh();
 			}
 		});
@@ -20,31 +24,30 @@ export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 			light: path.join(__dirname, "..", "icons", "light", "job.svg"),
 			dark: path.join(__dirname, "..", "icons", "dark", "job.svg"),
 		};
-		console.log(iconPath); 5;
 	}
 
 
 	private getLogFilePath(): string {
 		const config = vscode.workspace.getConfiguration('htc');
 		const logFileName = config.get<string>('logFile');
-		if (!logFileName) {
-			return ''; // Return an empty string if no file has been selected
-		}
-		return logFileName;
+		return logFileName || '';
 	}
 
+	startWatching(): void {
+		// Dispose of the previous watcher if it exists.
+		if (this.watcher) {
+			this.watcher.close();
+		}
 
-	// // maybe just watch log file if able to mount it
-	// startWatching(): void {
-	// 	fs.watch(this.logFile, (event, filename) => {
-	// 		if (event === "change") {
-	// 			this.refresh();
-	// 		}
-	// 	});
-	// }
+		if (this.logFilePath) {
+			this.watcher = fs.watch(this.logFilePath, (event) => {
+				if (event === "change") {
+					this.refresh();
+				}
+			});
+		}
+	}
 
-	private _onDidChangeTreeData: vscode.EventEmitter<JobOrEvent | undefined | void> = new vscode.EventEmitter<JobOrEvent | undefined | void>();
-	readonly onDidChangeTreeData: vscode.Event<JobOrEvent | undefined | void> = this._onDidChangeTreeData.event;
 
 	private _jobs: { [id: string]: Job } = {};
 

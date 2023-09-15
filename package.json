@@ -23,10 +23,24 @@
 	"main": "./dist/extension.js",
 	"contributes": {
 		"views": {
-			"explorer": [
+			"htcondor": [
+				{
+					"id": "htcondor.jobDetails",
+					"name": "Job Details",
+					"type": "webview"
+				},
 				{
 					"id": "htcondor",
 					"name": "Htcondor Jobs"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "htcondor",
+					"title": "Htcondor",
+					"icon": "chtc.svg"
 				}
 			]
 		},
@@ -65,6 +79,14 @@
 					"light": "icons/dark/file.svg",
 					"dark": "icons/dark/file.svg"
 				}
+			},
+			{
+				"command": "htcondor.showJobs",
+				"title": "Show Jobs"
+			},
+			{
+				"command": "htcondor.showJobDetails",
+				"title": "Show Job Details"
 			}
 		],
 		"menus": {
@@ -73,6 +95,11 @@
 					"command": "htcondor.selectLogFile",
 					"when": "view == htcondor",
 					"group": "navigation"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "htcondor.showJobs"
 				}
 			]
 		},
@@ -99,6 +126,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
+		"@types/axios": "^0.14.0",
 		"@types/glob": "^8.1.0",
 		"@types/mocha": "^10.0.1",
 		"@types/node": "^20.2.5",
@@ -115,6 +143,7 @@
 		"webpack-cli": "^5.1.1"
 	},
 	"dependencies": {
+		"axios": "^1.5.0",
 		"htcondor": "^0.0.29"
 	}
 }
