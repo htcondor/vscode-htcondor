@@ -7,6 +7,9 @@ import { JobProvider } from "./treeview";
 import { exec, ChildProcess } from 'child_process';
 import axios from 'axios';
 
+let isConnectedToRemote = vscode.env.remoteName !== undefined;
+vscode.commands.executeCommand('setContext', 'isConnectedToRemote', isConnectedToRemote);
+
 export async function showJobDetails(jobId: number) {
 	try {
 		// 1. Fetch the job details
@@ -148,7 +151,6 @@ export function activate(context: vscode.ExtensionContext) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "htc" is now active!');
-	startFlaskApp();
 	context.subscriptions.push(vscode.languages.registerHoverProvider("htcondor", new DocHoverProvider()));
 	context.subscriptions.push(vscode.languages.registerCompletionItemProvider("htcondor", new DocCompletionItemProvider(), " "));
 	context.subscriptions.push(
@@ -172,7 +174,12 @@ export function activate(context: vscode.ExtensionContext) {
 	// register tree view
 	let jobProvider = new JobProvider();
 	vscode.window.registerTreeDataProvider("htcondor", jobProvider);
+
+	
 	if (vscode.env.remoteName) {
+		let jobDetailsProvider = new JobDetailsProvider();
+		vscode.window.registerWebviewViewProvider('htcondor.jobDetails', jobDetailsProvider);
+		startFlaskApp();
 		// The user is connected to a remote machine.
 		let disposable = vscode.commands.registerCommand('htcondor.showJobs', async () => {
 			const jobs = await fetchJobs();
@@ -202,10 +209,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 		context.subscriptions.push(disposable);
 
-		let jobDetailsProvider = new JobDetailsProvider();
-		context.subscriptions.push(
-			vscode.window.registerWebviewViewProvider('htcondor.jobDetails', jobDetailsProvider)
-		);
 		vscode.commands.registerCommand('htcondor.showJobDetails', async (jobId) => {
 			// Fetch job details as before...
 			const response = await axios.get(`http://127.0.0.1:5000/jobs/${jobId}`);
@@ -253,7 +256,7 @@ class JobDetailsProvider implements vscode.WebviewViewProvider {
 		}
 		const html = `<div>${content}</div>`;
 
-		this._view.webview.html = html
+		this._view.webview.html = html;
 	}
 }
 
