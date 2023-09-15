@@ -244,10 +244,10 @@ class JobDetailsProvider implements vscode.WebviewViewProvider {
 		};
 		let content = '';
 		for (const field of importantFields) {
-			if (field === "JobStatus") {
+			if(field === "JobStatus"){
 				content += `<strong>Job Status:</strong> ${getStatusDescription(jobDetails[field])}<br>`;
 			}
-			else {
+			else{
 				content += `<strong>${field}:</strong> ${jobDetails[field]}<br>`;
 			}
 		}
