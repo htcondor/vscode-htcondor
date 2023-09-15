@@ -83,9 +83,7 @@ function getStatusDescription(statusCode: number): string {
 let flaskAppProcess: ChildProcess | null = null;
 
 function startFlaskApp() {
-	const flaskAppPath = path.join(__dirname, 'flask_app');
-	console.log(__dirname);
-	console.log(flaskAppPath);
+	const flaskAppPath = path.join(__dirname, '../flask_app');
 	flaskAppProcess = exec(flaskAppPath, (error, stdout, stderr) => {
 		if (error) {
 			if (error.message.includes('Address already in use')) {
@@ -166,56 +164,60 @@ export function activate(context: vscode.ExtensionContext) {
 
 			if (uris && uris.length) {
 				const selectedPath = uris[0].fsPath;
-				// Do something with the selected path
 				vscode.workspace.getConfiguration("htc").update("logFile", selectedPath, vscode.ConfigurationTarget.Global);
-				console.log(selectedPath);
 			}
 		})
 	);
+
 	// register tree view
 	let jobProvider = new JobProvider();
 	vscode.window.registerTreeDataProvider("htcondor", jobProvider);
-
-	let disposable = vscode.commands.registerCommand('htcondor.showJobs', async () => {
-		const jobs = await fetchJobs();
-		if (!jobs || jobs.length === 0) {
-			vscode.window.showInformationMessage('No jobs found.');
-			return;
-		}
-
-		const quickPick = vscode.window.createQuickPick();
-		quickPick.items = jobs.map(job => ({
-			label: `JobID: ${job.JobID}`,
-			description: `Status: ${job.Status}`,
-			detail: 'More details...',  // this can be a hint that they can click to get more details
-			jobId: job.JobID  // you can attach custom properties to your QuickPick items
-		}));
-
-		quickPick.onDidAccept(() => {
-			const selectedItem = quickPick.selectedItems[0] as any;
-			if (selectedItem && selectedItem.jobId) {
-				vscode.commands.executeCommand('htcondor.showJobDetails', selectedItem.jobId);
+	if (vscode.env.remoteName) {
+		// The user is connected to a remote machine.
+		let disposable = vscode.commands.registerCommand('htcondor.showJobs', async () => {
+			const jobs = await fetchJobs();
+			if (!jobs || jobs.length === 0) {
+				vscode.window.showInformationMessage('No jobs found.');
+				return;
 			}
-			quickPick.hide();
+
+			const quickPick = vscode.window.createQuickPick();
+			quickPick.items = jobs.map(job => ({
+				label: `JobID: ${job.JobID}`,
+				description: `Status: ${job.Status}`,
+				detail: 'More details...',  // this can be a hint that they can click to get more details
+				jobId: job.JobID  // you can attach custom properties to your QuickPick items
+			}));
+
+			quickPick.onDidAccept(() => {
+				const selectedItem = quickPick.selectedItems[0] as any;
+				if (selectedItem && selectedItem.jobId) {
+					vscode.commands.executeCommand('htcondor.showJobDetails', selectedItem.jobId);
+				}
+				quickPick.hide();
+			});
+
+			quickPick.show();
 		});
 
-		quickPick.show();
-	});
-	
-	context.subscriptions.push(disposable);
+		context.subscriptions.push(disposable);
 
-	let jobDetailsProvider = new JobDetailsProvider();
-	context.subscriptions.push(
-		vscode.window.registerWebviewViewProvider('htcondor.jobDetails', jobDetailsProvider)
-	);
-	vscode.commands.registerCommand('htcondor.showJobDetails', async (jobId) => {
-		// Fetch job details as before...
-		const response = await axios.get(`http://127.0.0.1:5000/jobs/${jobId}`);
-		const jobDetails = response.data[0];
+		let jobDetailsProvider = new JobDetailsProvider();
+		context.subscriptions.push(
+			vscode.window.registerWebviewViewProvider('htcondor.jobDetails', jobDetailsProvider)
+		);
+		vscode.commands.registerCommand('htcondor.showJobDetails', async (jobId) => {
+			// Fetch job details as before...
+			const response = await axios.get(`http://127.0.0.1:5000/jobs/${jobId}`);
+			const jobDetails = response.data[0];
 
-		// Update the side view with the job details
-		jobDetailsProvider.setJobDetails(jobDetails);
-	});
+			// Update the side view with the job details
+			jobDetailsProvider.setJobDetails(jobDetails);
+		});
+	} else {
+		// The user is not connected to a remote machine.
+	}
+
 
 
 }
@@ -238,11 +240,16 @@ class JobDetailsProvider implements vscode.WebviewViewProvider {
 		const importantFields = ["ClusterId", "JobStatus", "JobUniverse", "Args", "Cmd", "Owner", "JobStatus", "ProjectName", "User", "JobStartDate", "JobRunCount"];
 		const displayData = {
 			// Extract the 10 most important fields or however you want to format the data
-			
+
 		};
 		let content = '';
 		for (const field of importantFields) {
-			content += `<strong>${field}:</strong> ${jobDetails[field]}<br>`;
+			if (field === "JobStatus") {
+				content += `<strong>Job Status:</strong> ${getStatusDescription(jobDetails[field])}<br>`;
+			}
+			else {
+				content += `<strong>${field}:</strong> ${jobDetails[field]}<br>`;
+			}
 		}
 		const html = `<div>${content}</div>`;
 

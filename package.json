@@ -31,7 +31,7 @@
 				},
 				{
 					"id": "htcondor",
-					"name": "Htcondor Jobs"
+					"name": "Jobs in Selected Log File"
 				}
 			]
 		},
@@ -48,6 +48,10 @@
 			{
 				"view": "htcondor",
 				"contents": "No log file selected yet. Select one to see job events\n[Open Log File](command:htcondor.selectLogFile)\n"
+			},
+			{
+				"view": "htcondor.jobDetails",
+				"contents": "To see job details connect to an Access point via the remote ssh extension\n[Connect to remote host](command:remote-ssh.connect)\n"
 			}
 		],
 		"snippets": [
