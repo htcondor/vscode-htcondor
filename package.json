@@ -27,7 +27,8 @@
 				{
 					"id": "htcondor.jobDetails",
 					"name": "Job Details",
-					"type": "webview"
+					"type": "webview",
+          "when": "isConnectedToRemote"
 				},
 				{
 					"id": "htcondor",
