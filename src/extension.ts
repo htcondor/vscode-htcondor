@@ -175,6 +175,8 @@ export function activate(context: vscode.ExtensionContext) {
 	let jobProvider = new JobProvider();
 	vscode.window.registerTreeDataProvider("htcondor", jobProvider);
 
+	let dummyProvider = new JobProvider();
+	vscode.window.registerTreeDataProvider("htcondor.jobDetailsLocal", dummyProvider);
 	
 	if (vscode.env.remoteName) {
 		let jobDetailsProvider = new JobDetailsProvider();

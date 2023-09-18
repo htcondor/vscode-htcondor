@@ -10,21 +10,38 @@ export class JobProvider implements vscode.TreeDataProvider<JobOrEvent> {
 	readonly onDidChangeTreeData: vscode.Event<JobOrEvent | undefined | void> = this._onDidChangeTreeData.event;
 	private watcher: fs.FSWatcher | null = null;
 
-	constructor() {
-		this.logFilePath = this.getLogFilePath();
-		this.startWatching();
-		vscode.workspace.onDidChangeConfiguration(e => {
-			if (e.affectsConfiguration('htc.logFile')) {
-				this.logFilePath = this.getLogFilePath();
-				this.startWatching();
-				this.refresh();
-			}
-		});
-		let iconPath = {
-			light: path.join(__dirname, "..", "icons", "light", "job.svg"),
-			dark: path.join(__dirname, "..", "icons", "dark", "job.svg"),
-		};
+
+constructor() {
+	this.logFilePath = this.getLogFilePath();
+
+	// Check if the file exists before watching
+	if (!fs.existsSync(this.logFilePath)) {
+		vscode.window.showErrorMessage(`Log file not found: ${this.logFilePath}`);
+		return;
 	}
+
+	this.startWatching();
+
+	vscode.workspace.onDidChangeConfiguration(e => {
+		if (e.affectsConfiguration('htc.logFile')) {
+			this.logFilePath = this.getLogFilePath();
+
+			// Check if the new file exists before watching
+			if (!fs.existsSync(this.logFilePath)) {
+				return;
+			}
+
+			this.startWatching();
+			this.refresh();
+		}
+	});
+
+	let iconPath = {
+		light: path.join(__dirname, "..", "icons", "light", "job.svg"),
+		dark: path.join(__dirname, "..", "icons", "dark", "job.svg"),
+	};
+}
+
 
 
 	private getLogFilePath(): string {

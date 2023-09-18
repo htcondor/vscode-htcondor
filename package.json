@@ -28,7 +28,12 @@
 					"id": "htcondor.jobDetails",
 					"name": "Job Details",
 					"type": "webview",
-          "when": "isConnectedToRemote"
+          "when": "remoteName"
+				},
+				{
+					"id": "htcondor.jobDetailsLocal",
+					"name": "Job Details",
+          "when": "!remoteName"
 				},
 				{
 					"id": "htcondor",
@@ -51,8 +56,8 @@
 				"contents": "No log file selected yet. Select one to see job events\n[Open Log File](command:htcondor.selectLogFile)\n"
 			},
 			{
-				"view": "htcondor.jobDetails",
-				"contents": "To see job details connect to an Access point via the remote ssh extension\n[Connect to remote host](command:remote-ssh.connect)\n"
+				"view": "htcondor.jobDetailsLocal",
+				"contents": "To see job details connect to an Access point via the remote ssh extension"
 			}
 		],
 		"snippets": [
