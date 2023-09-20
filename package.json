@@ -3,7 +3,7 @@
 	"displayName": "Htcondor",
 	"description": "Official extension for Htcondor",
 	"author": "Max Hartke",
-	"version": "0.5.1",
+	"version": "1.0.1",
 	"icon": "htcondor.png",
 	"publisher": "htcondor",
 	"license": "Apache-2.0",
@@ -28,16 +28,12 @@
 					"id": "htcondor.jobDetails",
 					"name": "Job Details",
 					"type": "webview",
-          "when": "remoteName"
-				},
-				{
-					"id": "htcondor.jobDetailsLocal",
-					"name": "Job Details",
-          "when": "!remoteName"
+					"when": "remoteName"
 				},
 				{
 					"id": "htcondor",
-					"name": "Jobs in Selected Log File"
+					"name": "Jobs in Selected Log File",
+					"type": "tree"
 				}
 			]
 		},
@@ -153,6 +149,7 @@
 		"webpack-cli": "^5.1.1"
 	},
 	"dependencies": {
+		"@vscode/extension-telemetry": "^0.8.5",
 		"axios": "^1.5.0",
 		"htcondor": "^0.0.29"
 	}

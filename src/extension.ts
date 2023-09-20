@@ -6,7 +6,13 @@ import * as fs from "fs";
 import { JobProvider } from "./treeview";
 import { exec, ChildProcess } from 'child_process';
 import axios from 'axios';
+import TelemetryReporter from '@vscode/extension-telemetry';
 
+// the application insights key (also known as instrumentation key)
+const key = '7958b5c6-25cc-4797-ac0b-c9a42a037190';
+
+// telemetry reporter
+let reporter: TelemetryReporter;
 let isConnectedToRemote = vscode.env.remoteName !== undefined;
 vscode.commands.executeCommand('setContext', 'isConnectedToRemote', isConnectedToRemote);
 
@@ -36,7 +42,7 @@ export async function showJobDetails(jobId: number) {
 			content += `<strong>${field}:</strong> ${jobDetails[field]}<br>`;
 		}
 		const html = `<div>${content}</div>`;
-
+		reporter.sendTelemetryEvent('Job Details Viewed');
 		panel.webview.html = html;
 	} catch (error: any) {
 		vscode.window.showErrorMessage(`Failed to fetch job details: ${error.message}`);
@@ -48,6 +54,7 @@ async function fetchJobs(): Promise<{ JobID: number, Status: string }[]> {
 	try {
 		const response = await axios.get('http://127.0.0.1:5000/jobs');
 		if (response.status === 200 && Array.isArray(response.data)) {
+			
 			return response.data.map(job => ({
 				JobID: job.JobID,
 				Status: getStatusDescription(job.Status)  // Map status code to description
@@ -113,6 +120,7 @@ class DocHoverProvider implements vscode.HoverProvider {
 				let htmlContent = fs.readFileSync(path.join(__dirname, "../md_files", keyword + ".md"), "utf8");
 				let markdown = new vscode.MarkdownString(htmlContent, true);
 				markdown.supportHtml = true;
+				reporter.sendTelemetryEvent('hover', { 'keyword': keyword });
 				resolve(new vscode.Hover(markdown));
 			} else {
 				reject();
@@ -150,6 +158,8 @@ class DocCompletionItemProvider implements vscode.CompletionItemProvider {
 export function activate(context: vscode.ExtensionContext) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
+	reporter = new TelemetryReporter(key);
+	context.subscriptions.push(reporter);
 	console.log('Congratulations, your extension "htc" is now active!');
 	context.subscriptions.push(vscode.languages.registerHoverProvider("htcondor", new DocHoverProvider()));
 	context.subscriptions.push(vscode.languages.registerCompletionItemProvider("htcondor", new DocCompletionItemProvider(), " "));
@@ -167,6 +177,7 @@ export function activate(context: vscode.ExtensionContext) {
 			if (uris && uris.length) {
 				const selectedPath = uris[0].fsPath;
 				vscode.workspace.getConfiguration("htc").update("logFile", selectedPath, vscode.ConfigurationTarget.Global);
+				reporter.sendTelemetryEvent('log file updated');
 			}
 		})
 	);
@@ -174,9 +185,6 @@ export function activate(context: vscode.ExtensionContext) {
 	// register tree view
 	let jobProvider = new JobProvider();
 	vscode.window.registerTreeDataProvider("htcondor", jobProvider);
-
-	let dummyProvider = new JobProvider();
-	vscode.window.registerTreeDataProvider("htcondor.jobDetailsLocal", dummyProvider);
 	
 	if (vscode.env.remoteName) {
 		let jobDetailsProvider = new JobDetailsProvider();

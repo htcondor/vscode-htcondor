@@ -17,10 +17,11 @@ constructor() {
 	// Check if the file exists before watching
 	if (!fs.existsSync(this.logFilePath)) {
 		vscode.window.showErrorMessage(`Log file not found: ${this.logFilePath}`);
-		return;
+	}
+	else{
+		this.startWatching();
 	}
 
-	this.startWatching();
 
 	vscode.workspace.onDidChangeConfiguration(e => {
 		if (e.affectsConfiguration('htc.logFile')) {
