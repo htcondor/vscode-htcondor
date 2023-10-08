@@ -17,7 +17,7 @@ Uses [Keep a Changelog](http://keepachangelog.com/) to structure this file.
 - Htcondor jobs explorer view
 - Htcondor job logs view
 
-## [1.0.2] - 2023-010-08
+## [1.1.0] - 2023-010-08
 
 ### Added
 
