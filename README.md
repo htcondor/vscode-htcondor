@@ -4,10 +4,16 @@ The Htcondor extension for Visual Studio Code adds rich language support for Htc
 
 ## Features
 
+- Job event log visualization
+- Job details view
+
+  ![htcondor](images/htcondor.gif)
+  
 - Submit file commands documentation on hover
 - Submit file commands on completion
 - Submit file snippets
 - Syntax highlighting
+
 
   ![Demo](images/demo.gif)
 

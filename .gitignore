@@ -7,3 +7,4 @@ node_modules
 src/html_files
 *.html
 src/logs/
+*.sub

@@ -67,7 +67,8 @@
 				"id": "htcondor",
 				"extensions": [
 					".sub"
-				]
+				],
+				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [

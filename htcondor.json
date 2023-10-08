@@ -11,6 +11,30 @@
 				}
 			}
 		},
+{
+    "name": "keyword.control.queue.htcondor",
+    "begin": "\\bqueue\\b",
+    "end": "(?=\\n|$)",
+    "patterns": [
+      {
+        "name": "keyword.command.htcondor",
+        "match": "\\b(in|matching|from)\\b"
+      },
+      {
+        "name": "constant.numeric.integer.htcondor",
+        "match": "\\b\\d+\\b"
+      },
+      {
+        "name": "constant.language.boolean.htcondor",
+        "match": "\\b([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])\\b"
+      },
+      {
+        "name": "string.unquoted.htcondor",
+        "match": "\\b[A-Za-z0-9_/.-]+\\b"
+      }
+    ]
+  },
+
 		{
 			"name": "keyword.command.htcondor",
 			"match": "^\\+?(\\w+)",
@@ -22,10 +46,10 @@
 		},
 		{
 			"name": "constant.numeric.integer.htcondor",
-			"match": "(=?)\\s*(\\b\\d+\\b)",
+			"match": "(=\\s*)?(\\b\\d+\\b)",
 			"captures": {
 				"1": {
-					"name": "punctuation.separator.key-value.htcondor"
+					"name": "string.unquoted.htcondor"
 				},
 				"2": {
 					"name": "constant.numeric.integer.htcondor"
@@ -34,16 +58,17 @@
 		},
 		{
 			"name": "constant.language.boolean.htcondor",
-			"match": "(=?)\\s*(\\b([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])\\b)",
+			"match": "(=\\s*)?(\\b([Tt][Rr][Uu][Ee]|[Ff][Aa][Ll][Ss][Ee])\\b)",
 			"captures": {
 				"1": {
-					"name": "punctuation.separator.key-value.htcondor"
+					"name": "string.unquoted.htcondor"
 				},
 				"2": {
 					"name": "constant.language.boolean.htcondor"
 				}
 			}
 		},
+
 		{
 			"name": "string.unquoted.htcondor",
 			"begin": "(=)\\s*",
@@ -63,7 +88,5 @@
 		}
 	],
 	"scopeName": "source.htcondor",
-	"fileTypes": [
-		"sub"
-	]
+	"fileTypes": ["sub"]
 }
