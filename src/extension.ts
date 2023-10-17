@@ -275,6 +275,7 @@ export function deactivate() {
 	console.log("deactivated");
 	if (flaskAppProcess) {
 		flaskAppProcess.kill();
+		console.log("killed flask app");
 		flaskAppProcess = null;
 	}
 }
